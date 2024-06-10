@@ -37,9 +37,9 @@ jobs:
 #          - os: ubuntu-latest
 #            targetos: psvita
 #            targetarch: armv7hf
-          - os: windows-latest
-            targetos: win32
-            targetarch: amd64
+#          - os: windows-latest
+#            targetos: win32
+#            targetarch: amd64
           - os: windows-2019 # always use the oldest possible for 32-bit because of older compilers, and better support of certain legacy OSes
             targetos: win32
             targetarch: i386
@@ -88,7 +88,7 @@ jobs:
   release:
     name: "Upload releases"
     runs-on: ubuntu-latest
-#    needs: [build, flatpak]
+    needs: [build]
     if: ${{ github.event_name == 'push' }}
     steps:
     - name: Remove old release
