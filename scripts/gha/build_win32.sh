@@ -12,7 +12,7 @@ fi
 # NOTE: to build with other version use --msvc_version during configuration
 # NOTE: sometimes you may need to add WinSDK to %PATH%
 # NOTE: --enable-msvcdeps only used for CI builds, enabling it non-English versions of MSVC causes useless console spam
-./waf.bat configure -s "SDL2_VC" -T release --enable-utils --enable-tests --enable-lto --enable-msvcdeps $AMD64 || die_configure
+./waf.bat configure -s "SDL2_VC" -T release --enable-tests --enable-lto --gamedir "CryOfFear" --disable-menu-changegame $AMD64 || die_configure
 ./waf.bat build || die
 ./waf.bat install --destdir=. || die
 
@@ -38,5 +38,4 @@ fi
 
 mkdir -p artifacts/
 7z a -t7z artifacts/xash3d-fwgs-win32-$ARCH.7z -m0=lzma2 -mx=9 -mfb=64 -md=32m -ms=on \
-	*.dll *.exe *.pdb activities.txt \
-	valve/
+	*.dll *.exe *.pdb
